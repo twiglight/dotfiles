@@ -1,4 +1,39 @@
 ;;
+;; Plugins
+;;
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
+
+(use-package lsp-mode
+  :ensure t
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :hook
+  (ruby-mode . lsp)
+  (lsp-mode . lsp-enable-which-key-integration)
+  :commands lsp)
+
+;;
+;; Hooks
+;;
+
+(add-hook 'prog-mode-hook 'display-line-numbers-mode) ;; Line numbers (duh)
+
+;;
+;; Theming
+;;
+(use-package apropospriate-theme
+  :ensure t
+  :config 
+  (load-theme 'apropospriate-dark t))
+
+
+
+
+
+;;
 ;; MELPA and use-package setup
 ;;
 (require 'package)
@@ -11,28 +46,6 @@
   (package-install 'use-package))
 (eval-when-compile
   (require 'use-package))
-
-
-;;
-;; Theming
-;;
-(use-package apropospriate-theme
-  :ensure t
-  :config 
-  (load-theme 'apropospriate-dark t))
-
-
-;;
-;; Plugins
-;;
-(use-package which-key
-  :ensure t
-  :config
-  (which-key-mode))
-
-
-
-
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
