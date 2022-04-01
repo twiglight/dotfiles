@@ -23,3 +23,5 @@ Currently the following application etc are (partially) managed:
 - ssh
 - emacs
 - vim
+- asdf
+  * ruby
