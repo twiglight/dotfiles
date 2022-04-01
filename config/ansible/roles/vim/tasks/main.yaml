@@ -1,0 +1,8 @@
+---
+
+- name: Install VIM (fedora)
+  dnf:
+    name: vim
+    state: latest
+  when: ansible_facts['os_family']|lower == 'redhat'
+  become: yes

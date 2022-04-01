@@ -1,0 +1,6 @@
+- name: Set up development machine
+  hosts: develop
+  roles:
+    - python
+    - emacs
+    - vim

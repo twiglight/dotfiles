@@ -1,0 +1,15 @@
+---
+
+- name: Install emacs (fedora)
+  dnf:
+    name: emacs
+    state: latest
+  when: ansible_facts['os_family']|lower == 'redhat'
+  become: yes
+
+- name: Set init.el
+  ansible.builtin.file:
+    src: '{{ inventory_dir }}/../emacs/init.el'
+    dest: "{{ lookup('env', 'HOME') }}/.emacs.d/init.el"
+    state: link
+    force: yes
