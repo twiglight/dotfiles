@@ -1,12 +1,12 @@
 ---
 
-- name: Install SSH (fedora)
-  tags: install
-  dnf:
-    name: ssh
-    state: latest
-  when: ansible_facts['os_family']|lower == 'redhat'
-  become: yes
+# - name: Install SSH (fedora)
+#  tags: install
+#  dnf:
+#    name: ssh
+#    state: latest
+#  when: ansible_facts['os_family']|lower == 'redhat'
+#  become: yes
 
 - name: Generate SSH key
   tags: config

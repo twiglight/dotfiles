@@ -1,0 +1,34 @@
+---
+
+- name: Install Ruby plugin for asdf
+  tags: install
+  ansible.builtin.command:
+    cmd: asdf plugin add ruby
+    creates: "{{ lookup('env', 'HOME') }}/.asdf/plugins/ruby"
+
+- name: Install Ruby version with asdf
+  tags:
+    - install
+    - language
+  ansible.builtin.command:
+    cmd: asdf install ruby {{item}}
+    creates: "{{ lookup('env', 'HOME') }}/.asdf/installs/ruby/{{item}}"
+  loop: "{{versions}}"
+
+- name: Get current Ruby version
+  tags:
+    - checks
+    - config
+    - language
+  ansible.builtin.shell:
+    cmd: asdf current ruby | awk '{print $2}'
+  register: system_ruby_version
+  
+
+- name: Configure Ruby version
+  tags:
+     - config
+     - language
+  ansible.builtin.command:
+    cmd: asdf global ruby {{versions[0]}}
+  when: system_ruby_version.stdout != versions[0]

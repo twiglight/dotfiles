@@ -1,0 +1,19 @@
+---
+
+- name: Install asdf (fedora)
+  tags: install
+  git:
+    repo: "https://github.com/asdf-vm/asdf.git"
+    dest: "{{ lookup('env', 'HOME') }}/.asdf"
+    version: v0.9.0
+  when: ansible_facts['os_family']|lower == 'redhat'
+
+- name: Add asdf to .bashrc
+  tags:
+    - config
+    - bashrc
+  ansible.builtin.lineinfile:
+    path: "{{ lookup('env', 'HOME') }}/.bashrc"
+    line: '. $HOME/.asdf/asdf.sh'
+    state: present
+

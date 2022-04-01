@@ -6,3 +6,5 @@
     - ssh
     - emacs
     - vim
+    - asdf
+    - ruby
