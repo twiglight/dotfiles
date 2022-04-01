@@ -2,5 +2,7 @@
   hosts: develop
   roles:
     - python
+    - git
+    - ssh
     - emacs
     - vim

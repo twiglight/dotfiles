@@ -1,0 +1,15 @@
+---
+
+- name: Install SSH (fedora)
+  tags: install
+  dnf:
+    name: ssh
+    state: latest
+  when: ansible_facts['os_family']|lower == 'redhat'
+  become: yes
+
+- name: Generate SSH key
+  tags: config
+  ansible.builtin.command:
+    cmd: ssh-keygen -f "{{ lookup('env', 'HOME') }}/.ssh/id_rsa" -N ""
+    creates: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa*"

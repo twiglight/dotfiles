@@ -1,6 +1,7 @@
 ---
 
 - name: Install emacs (fedora)
+  tags: install
   dnf:
     name: emacs
     state: latest
@@ -8,6 +9,7 @@
   become: yes
 
 - name: Set init.el
+  tags: config 
   ansible.builtin.file:
     src: '{{ inventory_dir }}/../emacs/init.el'
     dest: "{{ lookup('env', 'HOME') }}/.emacs.d/init.el"

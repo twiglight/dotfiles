@@ -1,0 +1,17 @@
+---
+
+- name: Install git (fedora)
+  tags: install
+  dnf:
+    name: git
+    state: latest
+  when: ansible_facts['os_family']|lower == 'redhat'
+  become: yes
+
+- name: Configure git commit name
+  tags: config
+  ansible.builtin.command: git config --global user.name "twiglight"
+
+- name: Configure git commit email
+  tags: config
+  ansible.builtin.command: git config --global user.email "twig@light.com"

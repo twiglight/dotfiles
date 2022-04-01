@@ -1,6 +1,7 @@
 ---
 
 - name: Install VIM (fedora)
+  tags: install
   dnf:
     name: vim
     state: latest
