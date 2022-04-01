@@ -10,10 +10,10 @@
   become_user: root
   become_method: sudo
 
-- name: Configure git commit name
+- name: Ensure .gitconfig is there
   tags: config
-  ansible.builtin.command: git config --global user.name "twiglight"
-
-- name: Configure git commit email
-  tags: config
-  ansible.builtin.command: git config --global user.email "twig@light.com"
+  ansible.builtin.file:
+    src: '{{ inventory_dir }}/../git/gitconfig'
+    dest: "{{ lookup('env', 'HOME') }}/.gitconfig"
+    state: link
+    force: yes
