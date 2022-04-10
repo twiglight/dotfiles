@@ -1,5 +1,27 @@
 ---
 
+- name: Install Ruby dependencies
+  tags: install
+  ansible.builtin.package:
+    name:
+      - autoconf 
+      - bison 
+      - build-essential 
+      - libssl-dev 
+      - libyaml-dev 
+      - libreadline6-dev 
+      - zlib1g-dev 
+      - libncurses5-dev 
+      - libffi-dev 
+      - libgdbm6 
+      - libgdbm-dev 
+      - libdb-dev
+    state: present
+  become: yes
+  become_user: root
+  become_method: sudo
+
+
 - name: Install Ruby plugin for asdf
   tags: install
   ansible.builtin.command:

@@ -1,14 +1,19 @@
 ---
 
-- name: Install emacs (fedora)
+- name: Install emacs
   tags: install
-  dnf:
+  ansible.builtin.package:
     name: emacs
     state: latest
-  when: ansible_facts['os_family']|lower == 'redhat'
   become: yes
   become_user: root
   become_method: sudo
+
+- name: create config folder
+  tags: config
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/.emacs.d"
+    state: directory
 
 - name: Set init.el
   tags: config 

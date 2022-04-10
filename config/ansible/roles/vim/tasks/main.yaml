@@ -2,10 +2,9 @@
 
 - name: Install VIM (fedora)
   tags: install
-  dnf:
+  ansible.builtin.package:
     name: vim
     state: latest
-  when: ansible_facts['os_family']|lower == 'redhat'
   become: yes
   become_user: root
   become_method: sudo
