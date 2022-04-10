@@ -1,0 +1,12 @@
+---
+
+- name: Install CIFS for fstab
+  tags:
+    - install
+    - fs
+  ansible.builtin.package
+    name: cifs-utils
+    state: present
+  become: yes
+  become_user: root
+  become_method: sudo
