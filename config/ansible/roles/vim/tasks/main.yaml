@@ -8,3 +8,11 @@
   become: yes
   become_user: root
   become_method: sudo
+
+- name: Set vimrc
+  tags: config
+  ansible.builtin.file:
+    src: '{{ inventory_dir }}/../vim/vimrc'
+    dest: "{{ lookup('env', 'HOME') }}/.vimrc"
+    state: link
+    force: yes
