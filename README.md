@@ -15,7 +15,7 @@ make update/config
 ```
 
 Currently the following OSes are managed:
-- Fedora (35)
+- All of em? (which are supported by Ansible and have the same package names...)
 
 Currently the following application etc are (partially) managed:
 - python

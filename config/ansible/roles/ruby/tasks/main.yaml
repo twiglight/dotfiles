@@ -54,3 +54,10 @@
   ansible.builtin.command:
     cmd: asdf global ruby {{versions[0]}}
   when: system_ruby_version.stdout != versions[0]
+
+- name: Install Ruby LSP implementation
+  tags:
+    - config
+    - language
+  ansible.builtin.command:
+    cmd: gem install solargraph
