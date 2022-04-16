@@ -20,6 +20,10 @@
   :config
   (which-key-mode))
 
+(use-package auto-complete
+  :ensure t
+ )
+
 (use-package lsp-mode
   :ensure t
   :init

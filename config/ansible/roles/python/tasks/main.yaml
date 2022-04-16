@@ -1,6 +1,6 @@
 ---
 
-- name: Install python3  (fedora)
+- name: Install python3
   tags: install
   ansible.builtin.package:
     name: python3

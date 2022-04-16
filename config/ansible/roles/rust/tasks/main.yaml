@@ -1,0 +1,36 @@
+---
+
+- name: Install Rust plugin for asdf
+  tags: 
+    - install
+    - language
+  ansible.builtin.command:
+    cmd: asdf plugin add rust https://github.com/asdf-community/asdf-rust.git
+    creates: "{{ lookup('env', 'HOME') }}/.asdf/plugins/rust"
+
+- name: Install Rust version with asdf
+  tags:
+    - install
+    - language
+  ansible.builtin.command:
+    cmd: asdf install rust {{item}}
+    creates: "{{ lookup('env', 'HOME') }}/.asdf/installs/rust/{{item}}"
+  loop: "{{versions}}"
+
+- name: Get current Rust version
+  tags:
+    - checks
+    - config
+    - language
+  ansible.builtin.shell:
+    cmd: asdf current rust | awk '{print $2}'
+  register: system_rust_version
+  
+
+- name: Configure Rust version
+  tags:
+     - config
+     - language
+  ansible.builtin.command:
+    cmd: asdf global rust {{versions[0]}}
+  when: system_rust_version.stdout != versions[0]
