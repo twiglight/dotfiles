@@ -34,3 +34,14 @@
   ansible.builtin.command:
     cmd: asdf global rust {{versions[0]}}
   when: system_rust_version.stdout != versions[0]
+
+- name: Add Cargo bin to PATH
+  tags:
+    - config
+    - language
+    - bashrc
+  ansible.builtin.lineinfile:
+    path: "{{ lookup('env', 'HOME') }}/.bashrc"
+    line: 'PATH=$PATH:~/.cargo/bin'
+    state: present
+
