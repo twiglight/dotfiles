@@ -24,4 +24,5 @@ Currently the following application etc are (partially) managed:
 - emacs
 - vim
 - asdf
-  * ruby
+  * ruby (3.1.1)
+  * rust (1.60.0)
