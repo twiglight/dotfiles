@@ -22,3 +22,11 @@
     dest: "{{ lookup('env', 'HOME') }}/.emacs.d/init.el"
     state: link
     force: yes
+
+- name: Set init-use-package.el
+  tags: config 
+  ansible.builtin.file:
+    src: '{{ inventory_dir }}/../emacs/init-use-package.el'
+    dest: "{{ lookup('env', 'HOME') }}/.emacs.d/init-use-package.el"
+    state: link
+    force: yes
