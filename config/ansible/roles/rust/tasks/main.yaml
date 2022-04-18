@@ -1,5 +1,15 @@
 ---
 
+- name: Install Rust dependencies
+  tags: install
+  ansible.builtin.package:
+    name:
+      - curl
+    state: present
+  become: yes
+  become_user: root
+  become_method: sudo
+
 - name: Install Rust plugin for asdf
   tags: 
     - install
