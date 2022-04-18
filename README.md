@@ -14,6 +14,8 @@ make install # install is the default so is not mandatory
 make update/config
 ```
 
+*There seems to be a bit of a problem with installing languages after just installing asdf. As the asdf bin command needs to be added to the .bashrc file, bash needs to reload this (or start a new session or something). Else it doesn't recognize the asdf command...*
+
 Currently the following OSes are managed:
 - All of em? (which are supported by Ansible and have the same package names...)
 
