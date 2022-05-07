@@ -1,0 +1,47 @@
+---
+
+- name: Install Crystal dependencies
+  tags: install
+  ansible.builtin.package:
+    name:
+      - libpcre3-dev
+      - libevent-dev
+    state: present
+  become: yes
+  become_user: root
+  become_method: sudo
+
+
+- name: Install Crystal plugin for asdf
+  tags: install
+  ansible.builtin.command:
+    cmd: asdf plugin add crystal https://github.com/asdf-community/asdf-crystal.git
+    creates: "{{ lookup('env', 'HOME') }}/.asdf/plugins/crystal"
+
+- name: Install Crystal version with asdf
+  tags:
+    - install
+    - language
+  ansible.builtin.command:
+    cmd: asdf install crystal {{item}}
+    creates: "{{ lookup('env', 'HOME') }}/.asdf/installs/crystal/{{item}}"
+  loop: "{{versions}}"
+
+- name: Get current Crystal version
+  tags:
+    - checks
+    - config
+    - language
+  ansible.builtin.shell:
+    cmd: asdf current crystal | awk '{print $2}'
+  register: system_crystal_version
+  
+
+- name: Configure Crystal version
+  tags:
+     - config
+     - language
+  ansible.builtin.command:
+    cmd: asdf global crystal {{versions[0]}}
+  when: system_crystal_version.stdout != versions[0]
+
