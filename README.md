@@ -1,4 +1,4 @@
-# Twiglights dotfiles...
+# Twiglight's dotfiles...
 
 ## Usage
 At the moment I manage these dotfiles with [Ansible](https://docs.ansible.com/ansible/latest/index.html), so this is a requirement to use these dotfiles.
@@ -28,3 +28,5 @@ Currently the following application etc are (partially) managed:
 - asdf
   * ruby (3.1.1)
   * rust (1.60.0)
+  * go (1.18.1)
+  * crystal (1.4.1)
