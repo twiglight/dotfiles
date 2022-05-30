@@ -6,6 +6,7 @@
     name:
       - libpcre3-dev
       - libevent-dev
+      - libssl-dev
     state: present
   become: yes
   become_user: root

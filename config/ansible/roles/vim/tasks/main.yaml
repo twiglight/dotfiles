@@ -16,3 +16,12 @@
     dest: "{{ lookup('env', 'HOME') }}/.vimrc"
     state: link
     force: yes
+
+- name: Set VIM as default editor in .bashrc
+  tags:
+    - config
+    - bashrc
+  ansible.builtin.lineinfile:
+    path: "{{ lookup('env', 'HOME') }}/.bashrc"
+    line: 'export EDITOR=vim'
+    state: present

@@ -4,10 +4,10 @@
     - python
     - git
     - ssh
-    - emacs
+#    - emacs
     - vim
     - asdf
-    - ruby
-    - rust
-    - go
+#    - ruby
+#    - rust
+#    - go
     - crystal
