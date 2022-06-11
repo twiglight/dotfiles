@@ -11,17 +11,15 @@
 
 - name: Set vimrc
   tags: config
-  ansible.builtin.file:
+  ansible.builtin.copy:
     src: '{{ inventory_dir }}/../vim/vimrc'
-    dest: "{{ lookup('env', 'HOME') }}/.vimrc"
-    state: link
-    force: yes
+    dest: "{{ user_home }}/.vimrc"
 
 - name: Set VIM as default editor in .bashrc
   tags:
     - config
     - bashrc
   ansible.builtin.lineinfile:
-    path: "{{ lookup('env', 'HOME') }}/.bashrc"
+    path: "{{ user_home }}/.bashrc"
     line: 'export EDITOR=vim'
     state: present

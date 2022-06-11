@@ -10,5 +10,5 @@
 - name: Generate SSH key
   tags: config
   ansible.builtin.command:
-    cmd: ssh-keygen -f "{{ lookup('env', 'HOME') }}/.ssh/id_rsa" -N ""
-    creates: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa*"
+    cmd: ssh-keygen -f "{{ user_home }}/.ssh/id_rsa" -N ""
+    creates: "{{ user_home }}/.ssh/id_rsa*"

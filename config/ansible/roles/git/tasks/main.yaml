@@ -11,8 +11,6 @@
 
 - name: Ensure .gitconfig is there
   tags: config
-  ansible.builtin.file:
+  ansible.builtin.copy:
     src: '{{ inventory_dir }}/../git/gitconfig'
-    dest: "{{ lookup('env', 'HOME') }}/.gitconfig"
-    state: link
-    force: yes
+    dest: "{{ user_home }}/.gitconfig"

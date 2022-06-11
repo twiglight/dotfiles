@@ -11,12 +11,12 @@
   become_method: sudo
 
 - name: Install Rust plugin for asdf
-  tags: 
+  tags:
     - install
     - language
   ansible.builtin.command:
     cmd: asdf plugin add rust https://github.com/asdf-community/asdf-rust.git
-    creates: "{{ lookup('env', 'HOME') }}/.asdf/plugins/rust"
+    creates: "{{ user_home }}/.asdf/plugins/rust"
 
 - name: Install Rust version with asdf
   tags:
@@ -24,7 +24,7 @@
     - language
   ansible.builtin.command:
     cmd: asdf install rust {{item}}
-    creates: "{{ lookup('env', 'HOME') }}/.asdf/installs/rust/{{item}}"
+    creates: "{{ user_home }}/.asdf/installs/rust/{{item}}"
   loop: "{{versions}}"
 
 - name: Get current Rust version
@@ -35,7 +35,7 @@
   ansible.builtin.shell:
     cmd: asdf current rust | awk '{print $2}'
   register: system_rust_version
-  
+
 
 - name: Configure Rust version
   tags:
@@ -51,7 +51,6 @@
     - language
     - bashrc
   ansible.builtin.lineinfile:
-    path: "{{ lookup('env', 'HOME') }}/.bashrc"
+    path: "{{ user_home }}/.bashrc"
     line: 'PATH=$PATH:~/.cargo/bin'
     state: present
-

@@ -17,7 +17,7 @@
   tags: install
   ansible.builtin.command:
     cmd: asdf plugin add crystal https://github.com/asdf-community/asdf-crystal.git
-    creates: "{{ lookup('env', 'HOME') }}/.asdf/plugins/crystal"
+    creates: "{{ user_home }}/.asdf/plugins/crystal"
 
 - name: Install Crystal version with asdf
   tags:
@@ -25,7 +25,7 @@
     - language
   ansible.builtin.command:
     cmd: asdf install crystal {{item}}
-    creates: "{{ lookup('env', 'HOME') }}/.asdf/installs/crystal/{{item}}"
+    creates: "{{ user_home }}/.asdf/installs/crystal/{{item}}"
   loop: "{{versions}}"
 
 - name: Get current Crystal version
@@ -36,7 +36,7 @@
   ansible.builtin.shell:
     cmd: asdf current crystal | awk '{print $2}'
   register: system_crystal_version
-  
+
 
 - name: Configure Crystal version
   tags:
@@ -45,4 +45,3 @@
   ansible.builtin.command:
     cmd: asdf global crystal {{versions[0]}}
   when: system_crystal_version.stdout != versions[0]
-

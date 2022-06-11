@@ -1,5 +1,16 @@
-develop:
-  hosts:
-    localhost:
-      ansible_connection: local
-      ansible_python_interpreter: /usr/bin/python3
+all:
+  children:
+    develop:
+      hosts:
+        localhost:
+          user_home: /home/twiglight
+          ansible_connection: local
+          ansible_python_interpreter: /usr/bin/python3
+    vms:
+      hosts:
+        docker-hosts:
+          user_home: /home/adminomo
+          ansible_user: adminomo
+          ansible_host: 10.0.3.181
+      vars:
+        ansible_connection: ssh

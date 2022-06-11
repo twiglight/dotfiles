@@ -4,7 +4,7 @@
   tags: install
   ansible.builtin.command:
     cmd: asdf plugin add golang
-    creates: "{{ lookup('env', 'HOME') }}/.asdf/plugins/golang"
+    creates: "{{ user_home }}/.asdf/plugins/golang"
 
 - name: Install Go version with asdf
   tags:
@@ -12,7 +12,7 @@
     - language
   ansible.builtin.command:
     cmd: asdf install golang {{item}}
-    creates: "{{ lookup('env', 'HOME') }}/.asdf/installs/golang/{{item}}"
+    creates: "{{ user_home }}/.asdf/installs/golang/{{item}}"
   loop: "{{versions}}"
 
 - name: Get current Go version
@@ -23,7 +23,7 @@
   ansible.builtin.shell:
     cmd: asdf current golang | awk '{print $2}'
   register: system_golang_version
-  
+
 
 - name: Configure Go version
   tags:
@@ -32,4 +32,3 @@
   ansible.builtin.command:
     cmd: asdf global golang {{versions[0]}}
   when: system_golang_version.stdout != versions[0]
-

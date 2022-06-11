@@ -4,7 +4,7 @@
   tags: install
   git:
     repo: "https://github.com/asdf-vm/asdf.git"
-    dest: "{{ lookup('env', 'HOME') }}/.asdf"
+    dest: "{{ user_home }}/.asdf"
     version: v0.9.0
 
 - name: Add asdf to .bashrc
@@ -12,12 +12,12 @@
     - config
     - bashrc
   ansible.builtin.lineinfile:
-    path: "{{ lookup('env', 'HOME') }}/.bashrc"
+    path: "{{ user_home }}/.bashrc"
     line: '. $HOME/.asdf/asdf.sh'
     state: present
 
 - name: Create plugins folder
   tags: config
   ansible.builtin.file:
-    path: "{{ lookup('env', 'HOME') }}/.asdf/plugins"
+    path: "{{ user_home }}/.asdf/plugins"
     state: directory

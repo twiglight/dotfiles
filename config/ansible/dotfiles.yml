@@ -11,3 +11,8 @@
 #    - rust
 #    - go
     - crystal
+
+- name: Set up vms
+  hosts: vms
+  roles:
+    - vim

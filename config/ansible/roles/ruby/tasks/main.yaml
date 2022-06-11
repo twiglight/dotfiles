@@ -4,17 +4,17 @@
   tags: install
   ansible.builtin.package:
     name:
-      - autoconf 
-      - bison 
-      - build-essential 
-      - libssl-dev 
-      - libyaml-dev 
-      - libreadline6-dev 
-      - zlib1g-dev 
-      - libncurses5-dev 
-      - libffi-dev 
-      - libgdbm6 
-      - libgdbm-dev 
+      - autoconf
+      - bison
+      - build-essential
+      - libssl-dev
+      - libyaml-dev
+      - libreadline6-dev
+      - zlib1g-dev
+      - libncurses5-dev
+      - libffi-dev
+      - libgdbm6
+      - libgdbm-dev
       - libdb-dev
     state: present
   become: yes
@@ -26,7 +26,7 @@
   tags: install
   ansible.builtin.command:
     cmd: asdf plugin add ruby
-    creates: "{{ lookup('env', 'HOME') }}/.asdf/plugins/ruby"
+    creates: "{{ user_home }}/.asdf/plugins/ruby"
 
 - name: Install Ruby version with asdf
   tags:
@@ -34,7 +34,7 @@
     - language
   ansible.builtin.command:
     cmd: asdf install ruby {{item}}
-    creates: "{{ lookup('env', 'HOME') }}/.asdf/installs/ruby/{{item}}"
+    creates: "{{ user_home }}/.asdf/installs/ruby/{{item}}"
   loop: "{{versions}}"
 
 - name: Get current Ruby version
@@ -45,7 +45,7 @@
   ansible.builtin.shell:
     cmd: asdf current ruby | awk '{print $2}'
   register: system_ruby_version
-  
+
 
 - name: Configure Ruby version
   tags:
