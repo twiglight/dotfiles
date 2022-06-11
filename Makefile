@@ -13,7 +13,7 @@ ansible_dir := $(mkfile_dir)/config/ansible
 # TARGETS
 #
 install:
-	ansible-playbook -i $(ansible_dir)/hosts $(ansible_dir)/dotfiles.yml -K
+	ansible-playbook -i $(ansible_dir)/inventory.yml $(ansible_dir)/dotfiles.yml -K
 
 update/config:
-	ansible-playbook -i $(ansible_dir)/hosts $(ansible_dir)/dotfiles.yml -t config
+	ansible-playbook -i $(ansible_dir)/inventory.yml $(ansible_dir)/dotfiles.yml -t config
