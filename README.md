@@ -17,7 +17,7 @@ make update/config
 *There seems to be a bit of a problem with installing languages after just installing asdf. As the asdf bin command needs to be added to the .bashrc file, bash needs to reload this (or start a new session or something). Else it doesn't recognize the asdf command... For now the fix for me is just retrying the command*
 
 Currently the following OSes are managed:
-- All of em? (which are supported by Ansible and have the same package names...)
+- Pretty much only Ubuntu based systems at this time
 
 Currently the following application etc are (partially) managed:
 - python
@@ -30,3 +30,4 @@ Currently the following application etc are (partially) managed:
   * rust (1.60.0)
   * go (1.18.1)
   * crystal (1.4.1)
+- docker
