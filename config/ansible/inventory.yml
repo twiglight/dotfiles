@@ -9,8 +9,8 @@ all:
     vms:
       hosts:
         docker-hosts:
-          user_home: /home/adminomo
-          ansible_user: adminomo
-          ansible_host: 10.0.3.181
+          user_home: /home/chief
+          ansible_user: chief
+          ansible_host: 10.0.3.193
       vars:
         ansible_connection: ssh

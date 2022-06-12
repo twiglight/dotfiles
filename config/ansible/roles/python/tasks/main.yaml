@@ -28,5 +28,5 @@
     - checks
     - install
   ansible.builtin.set_fact:
-    pip_executable: "{{ user_home }}/.local/lib/pip"
+    pip_executable: "{{ user_home }}/.local/bin/pip"
     pip_dependencies: "{{ user_home }}/.local/lib/python{{ system_python3_version.stdout }}/site-packages"
