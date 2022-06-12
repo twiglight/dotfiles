@@ -13,6 +13,7 @@ ansible_dir := $(mkfile_dir)/config/ansible
 # TARGETS
 #
 install:
+	ansible-galaxy collection install -r $(ansible_dir)/requirements.yml
 	ansible-playbook -i $(ansible_dir)/inventory.yml $(ansible_dir)/dotfiles.yml -K
 
 update/config:
