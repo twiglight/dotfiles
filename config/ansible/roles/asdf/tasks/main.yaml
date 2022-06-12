@@ -1,6 +1,6 @@
 ---
 
-- name: Install asdf (fedora)
+- name: Install asdf
   tags: install
   git:
     repo: "https://github.com/asdf-vm/asdf.git"

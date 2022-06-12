@@ -16,3 +16,4 @@
   hosts: vms
   roles:
     - vim
+    - docker
