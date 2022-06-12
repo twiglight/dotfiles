@@ -22,3 +22,11 @@
   ansible.builtin.shell:
     cmd: wget https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py && python3 /tmp/get-pip.py
     creates: "{{ user_home }}/.local/lib/python{{ system_python3_version.stdout }}/site-packages/pip"
+
+- name: Set Python variables
+  tags:
+    - checks
+    - install
+  ansible.builtin.set_fact:
+    pip_executable: "{{ user_home }}/.local/lib/pip"
+    pip_dependencies: "{{ user_home }}/.local/lib/python{{ system_python3_version.stdout }}/site-packages"
