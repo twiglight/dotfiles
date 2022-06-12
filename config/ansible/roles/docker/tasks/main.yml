@@ -65,3 +65,8 @@
     append: yes
     groups: docker
     name: "{{ ansible_user }}"
+
+- name: Install docker pip dependency
+  tags: config
+  ansible.builtin.command:
+    cmd: pip install docker

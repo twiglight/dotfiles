@@ -1,19 +1,21 @@
-- name: Set up development machine
-  hosts: develop
-  roles:
-    - python
-    - git
-    - ssh
-#    - emacs
-    - vim
-    - asdf
-#    - ruby
-#    - rust
-#    - go
-    - crystal
+# - name: Set up development machine
+#   hosts: develop
+#   roles:
+#     - python
+#     - git
+#     - ssh
+# #    - emacs
+#     - vim
+#     - asdf
+# #    - ruby
+# #    - rust
+# #    - go
+#     - crystal
 
 - name: Set up vms
   hosts: vms
   roles:
+    - python
     - vim
     - docker
+    - docker-test

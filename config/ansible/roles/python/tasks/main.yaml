@@ -8,3 +8,17 @@
   become: yes
   become_user: root
   become_method: sudo
+
+- name: Get current Python version
+  tags:
+    - checks
+    - install
+  ansible.builtin.shell:
+    cmd: python3 -V | awk '{print $2}' | awk -F . '{print $1"."$2}'
+  register: system_python3_version
+
+- name: Install pip
+  tags: install
+  ansible.builtin.shell:
+    cmd: wget https://bootstrap.pypa.io/get-pip.py -O /tmp/get-pip.py && python3 /tmp/get-pip.py
+    creates: "{{ user_home }}/.local/lib/python{{ system_python3_version.stdout }}/site-packages/pip"

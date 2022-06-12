@@ -1,0 +1,13 @@
+---
+
+- name: Install test docker image
+  tags: config
+  community.docker.docker_image:
+    name: hello-world
+    source: pull
+
+- name: Run test docker image
+  tags: config
+  community.docker.docker_container:
+    name: hello_world_test
+    image: hello-world
