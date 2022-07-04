@@ -12,9 +12,11 @@ ansible_dir := $(mkfile_dir)/config/ansible
 #
 # TARGETS
 #
-install:
+requirements_fulfilled:
 	ansible-galaxy collection install -r $(ansible_dir)/requirements.yml
-	ansible-playbook -i $(ansible_dir)/inventory.yml $(ansible_dir)/dotfiles.yml -K
 
-update/config:
-	ansible-playbook -i $(ansible_dir)/inventory.yml $(ansible_dir)/dotfiles.yml -t config
+install/develop: requirements_fulfilled
+	ansible-playbook -i $(ansible_dir)/inventory $(ansible_dir)/develop.yml -K
+
+install/htpc: requirements_fulfilled
+	ansible-playbook -i $(ansible_dir)/inventory $(ansible_dir)/htpc.yml -K

@@ -3,7 +3,9 @@
 - name: Install python3
   tags: install
   ansible.builtin.package:
-    name: python3
+    name:
+      - python3
+      - python3-distutils
     state: latest
   become: yes
   become_user: root

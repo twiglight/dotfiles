@@ -4,11 +4,17 @@
   tags: install
   ansible.builtin.package:
     name: software-properties-common
+  become: yes
+  become_user: root
+  become_method: sudo
 
 - name: Add xbmc repository
   tags: install
   ansible.builtin.apt_repository:
     repo: ppa:team-xbmc/ppa
+  become: yes
+  become_user: root
+  become_method: sudo
 
 - name: Install Kodi
   tags: install
@@ -16,3 +22,6 @@
     name: kodi
     update_cache: yes
     cache_valid_time: 1800
+  become: yes
+  become_user: root
+  become_method: sudo
