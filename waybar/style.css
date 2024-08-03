@@ -1,0 +1,79 @@
+@define-color fg-color #fae17d;
+@define-color fg-color-alert #fa7d96;
+@define-color bg-color #191919;
+
+* {
+    background-color: transparent;
+
+    border: 1px;
+    border-radius: 5px;
+
+    box-shadow: none;
+    text-shadow: none;
+
+    font-family: Liberation Mono;
+    font-size: 16;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+    margin: 10px 10px 0px 10px;
+}
+
+#workspaces button,
+#taskbar,
+#window,
+#pulseaudio,
+#network,
+#clock {
+    color: @fg-color;
+    background: @bg-color;
+}
+
+#workspaces button:hover,
+#taskbar button:hover,
+#workspaces button.active,
+#taskbar button.active,
+#pulseaudio:hover,
+#clock:hover {
+
+    color: @bg-color;
+    background: @fg-color;
+
+    transition: background-color 0.5s;
+    transition-timing-function: ease;
+}
+
+#workspaces button {
+    margin: 0px 5px;
+}
+
+#window {
+    padding: 0px 10px;
+    margin-right: 10px;
+}
+
+#pulseaudio,
+#network,
+#clock {
+    margin-left: 10px;
+}
+
+#pulseaudio{
+    min-width: 100px;
+}
+
+#network {
+    min-width: 155px;
+}
+
+#clock {
+    min-width: 145px;
+}
+
+#pulseaudio.muted,
+#network.disconnected {
+    color: @bg-color;
+    background-color: @fg-color-alert;
+}

@@ -1,0 +1,70 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top",
+    "height": 30, // Waybar height (to be removed for auto height)
+    "spacing": 4, // Gaps between modules (4px)
+
+
+    "modules-left": [
+        "hyprland/workspaces",
+	"wlr/taskbar"
+    ],
+
+    "modules-center": [
+        "hyprland/window",
+    ],
+
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "clock",
+    ],
+
+
+    // Modules configuration 
+
+    "hyprland/window": {
+        "format": "{title}",
+        "tooltip": false,
+    },
+
+    "wlr/taskbar": {
+        "on-click": "activate",
+        "tooltip": false,
+    },
+
+    "hyprland/workspaces": {
+        "persistent-workspaces": {
+            "DP-1": [ 1, 2, 3, 4 ]
+        }
+    },
+
+    "pulseaudio": {
+        "format": "{volume}% {icon}",
+        "format-icons": {
+            "default": ["", ""],
+            "default-muted": [""],
+        },
+        "scroll-step": 5,
+        "on-click-right": "pavucontrol",
+        "on-click-middle": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "tooltip": false,
+    },
+
+    "network": {
+        "format": "{ipaddr} {icon}",
+        "format-icons": {
+            "ethernet": [""],
+            "wifi": [""],
+            "disconnected": [""],
+        },
+        "tooltip": false,
+    },
+
+    "clock": {
+        "timezone": "Europe/Amsterdam",
+        "format": "{:%a %H:%M} ",
+        "format-alt": "{:%d-%m-%Y }",
+        "tooltip": false,
+    }
+}
