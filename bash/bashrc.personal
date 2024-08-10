@@ -3,3 +3,12 @@
 PS1='\W > '
 
 export PATH="$HOME/.local/bin:$PATH"
+
+ssh_config_file="$HOME/.ssh/config"
+if [ -f $ssh_config_file ]; then
+	ssh_completions=$(cat $ssh_config_file | grep Host\  | awk 'BEGIN {ORS=" "}; {print $2}')
+
+	complete -W '${ssh_completions}' ssh
+else
+	echo "no ssh config file"
+fi
