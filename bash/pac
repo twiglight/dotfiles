@@ -8,6 +8,7 @@ default() {
 	echo -e " - install <args>"
 	echo -e " - search  <args>"
 	echo -e " - update  <args>"
+	echo -e " - remove  <args>"
 }
 
 install() {
@@ -22,6 +23,10 @@ update() {
 	sudo pacman -Syu
 }
 
+remove() {
+	sudo pacman -R "$@"
+}
+
 if [ $# -lt 1 ]; then
 	default
 elif [ $1 = "install" ]; then
@@ -30,6 +35,8 @@ elif [ $1 = "search" ]; then
 	search "${@:2}"
 elif [ $1 = "update" ]; then
 	update
+elif [ $1 = "remove" ]; then
+	remove "${@:2}"
 else
 	default
 fi

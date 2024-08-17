@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-PS1='\W > '
+#PS1='\W > '
+PS1='\e[1;36m\W \e[1;31m~\e[1;33m>\e[0m '
 
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -8,7 +9,7 @@ ssh_config_file="$HOME/.ssh/config"
 if [ -f $ssh_config_file ]; then
 	ssh_completions=$(cat $ssh_config_file | grep Host\  | awk 'BEGIN {ORS=" "}; {print $2}')
 
-	complete -W '${ssh_completions}' ssh
+	complete -W '${ssh_completions}' ssh scp
 else
 	echo "no ssh config file"
 fi
