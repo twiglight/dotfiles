@@ -8,13 +8,14 @@ fi
 
 ln -si "$(pwd)/bash/bashrc.personal" ~/.bashrc.personal
 
-# ln hyprland ~/.config/hypr
+# ln -si hyprland ~/.config/hypr
 
 ln -si "$(pwd)/vim/vimrc" ~/.vimrc
 
-# ln waybar ~/.config/waybar
+ln -si "$(pwd)/waybar" ~/.config/waybar
 
-#ln -s sddm/themes/where_is_my_sddm_theme /usr/share/sddm/themes
+# ln -si sddm/themes/where_is_my_sddm_theme /usr/share/sddm/themes
 
-ln -i "$(pwd)/bash/pac" ~/.local/bin/
+# ln -si "$(pwd)/bash/pac" ~/.local/bin/
 
+ln -si "$(pwd)/river" ~/.config/river
