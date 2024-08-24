@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+
+# Change me to change the location of the projects 'index'
+config_file="$HOME/Projects/dotfiles/git/projects.csv"
+
+if [ ! -f $config_file ]; then
+	echo "No config, creating it at $config_file"
+	touch $config_file
+fi
+
+default() {
+	echo -e "Simple project manager, mainly for navigation\n"
+
+	echo " - l|list"
+	echo " - a|add <project_names>..."
+	echo " - rm|remove <project_names>..."
+	echo " - cd <project_name>"
+}
+
+list() {
+	for project in $(cat $config_file); do
+		echo $project | awk '{ split($0, a, ";"); print a[1]" -> "a[2]}'
+	done 
+}
+
+add() {
+	dir=$(pwd)
+
+	for name in $@; do
+		if grep -G "^$name" $config_file >> /dev/null 2>&1; then
+			echo "'$name' already in use!"
+			continue
+		fi
+
+		echo "$name;$dir" >> $config_file
+	done
+}
+
+remove() {
+	for name in $@; do
+		line=$(grep -n -G "^$name" $config_file)
+		if [ $? = 0 ]; then
+			line_number=$(echo "$line" | awk '{ split($0, a, ":"); print a[1]}')
+			sed -i "$line_number"d $config_file
+		fi
+	done
+}
+
+change_directory() {
+	project=$(grep -G "^$1" $config_file)
+
+	if [ $? -eq 0 ]; then
+		cd $(echo "$project" | awk '{ split($0, a, ";"); print a[2] }')
+	else
+		echo "$1 is not a known project!"
+		exit 1
+	fi
+}
+
+if [ $# -lt 1 ]; then
+	default
+elif [ $1 = "list" ] || [ $1 = "l" ]; then
+	list
+elif [ $1 = "add" ] || [ $1 = "a" ]; then
+	add "${@:2}"
+elif [ $1 = "remove" ] || [ $1 = "rm" ]; then
+	remove "${@:2}"
+elif [ $1 = "cd" ]; then
+	change_directory "${@:2}"
+fi

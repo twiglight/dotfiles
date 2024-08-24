@@ -5,15 +5,17 @@ function has_zypper() {
 }
 
 if ! has_zypper; then
-	echo "You don\'t have zypper installed... is this even openSUSE?"
+	echo "You don't have zypper installed... is this even openSUSE?"
+
+	exit 1
 fi
 
 default() {
 	echo -e "Small wrapper around zypper\n"
 
 	echo -e "Choose one of:"
-	echo -e " - i/install <args>"
-	echo -e " - s/search <args>"
+	echo -e " - i|install <args>"
+	echo -e " - s|search <args>"
 }
 
 install() {
