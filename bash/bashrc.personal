@@ -11,5 +11,7 @@ if [ -f $ssh_config_file ]; then
 
 	complete -W '${ssh_completions}' ssh scp
 else
-	echo "no ssh config file"
+	echo "no ssh config file, creating one now"
+	mkdir -p "$HOME/.ssh"
+	touch "$HOME/.ssh/config"
 fi

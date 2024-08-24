@@ -1,0 +1,36 @@
+#! /usr/bin/env bash
+
+function has_zypper() {
+	which zypper >> /dev/null 2>&1
+}
+
+if ! has_zypper; then
+	echo "You don\'t have zypper installed... is this even openSUSE?"
+fi
+
+default() {
+	echo -e "Small wrapper around zypper\n"
+
+	echo -e "Choose one of:"
+	echo -e " - i/install <args>"
+	echo -e " - s/search <args>"
+}
+
+install() {
+	sudo zypper install "$@"
+}
+
+search() {
+	zypper search "$@"
+}
+
+if [ $# -lt 1 ]; then
+	default
+elif [ $1 = "install" ] || [ $1 = "i"]; then
+	install "${@:2}"
+elif [ $1 = "search" ] || [ $1 = "s" ]; then
+	search "${@:2}"
+else 
+	default
+fi
+
