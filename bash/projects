@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Change me to change the location of the projects 'index'
-config_file="$HOME/Projects/dotfiles/git/projects.csv"
+config_file="$HOME/Projects/dotfiles/bash/projects.csv"
 
 if [ ! -f $config_file ]; then
 	echo "No config, creating it at $config_file"
