@@ -17,3 +17,5 @@ sudo ln -si "$(pwd)/sddm/themes/where_is_my_sddm_theme" /usr/share/sddm/themes
 ln -si "$(pwd)/pacman/pac" ~/.local/bin/
 ln -si "$(pwd)/zypper/zyp" ~/.local/bin/
 ln -si "$(pwd)/river" ~/.config/river
+
+ln -si "$(pwd)/bash/projects" ~/.local/bin/
