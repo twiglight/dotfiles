@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 #PS1='\W > '
-PS1='\[\e[1;36m\]\u \[\e[1;35m\]@ \[\e[1;31m\]$(basename \w) \[\e[1;33m\]~\[\e[0m\] '
+#PS1='\[\e[1;36m\]\u \[\e[1;35m\]@ \[\e[1;31m\]$(basename \w) \[\e[1;33m\]~\[\e[0m\] '
 
-export PATH="$HOME/.local/bin:$PATH"
+#export PATH="$HOME/.local/bin:$PATH"
 
 ssh_config_file="$HOME/.ssh/config"
 
@@ -23,6 +23,14 @@ if [ $? = 0 ]; then
 	alias projects="source projects"
 fi
 
+has_asdf_installed=$(which asdf >> /dev/null 2>&1)
+
+if [ $? = 0 ]; then
+	export ASDF_DATA_DIR="$HOME/.asdf"
+	export PATH="$ASDF_DATA_DIR/shims:$PATH"
+	. <(asdf completion bash)
+fi
+
 has_mise_installed=$(which mise >> /dev/null 2>&1)
 
 if [ $? = 0 ]; then
@@ -34,3 +42,9 @@ has_vim_installed=$(which vim >> /dev/null 2>&1)
 if [ $? = 0 ]; then
 	export EDITOR=vim
 fi
+
+ffmpeg-flac-to-mp3 () {
+	for a in ./*.flac; do
+	  < /dev/null ffmpeg -i "$a" -qscale:a 0 "${a[@]/%flac/mp3}"
+	done
+}
