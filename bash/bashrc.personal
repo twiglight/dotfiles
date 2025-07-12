@@ -43,8 +43,12 @@ if [ $? = 0 ]; then
 	export EDITOR=vim
 fi
 
-ffmpeg-flac-to-mp3 () {
-	for a in ./*.flac; do
-	  < /dev/null ffmpeg -i "$a" -qscale:a 0 "${a[@]/%flac/mp3}"
+ffmpeg-conv () {
+	echo "Press ENTER to convert all $1 files to $2 AND remove $1 upon completion" && read
+	
+	for a in ./*.$1; do
+	  < /dev/null ffmpeg -i "$a" -qscale:a 0 "${a[@]/%$1/$2}"
 	done
+
+	rm ./*.$1
 }
